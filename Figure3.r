@@ -13,10 +13,8 @@ for(i in unique(pathwaytype[,1])){
 	}
 }
 Promotion_pathway <- list(pathway[which(!is.na(match(pathway[,2],pathwaytype[which(pathwaytype[,2]=="Promotion"),1]))),1])	 
-##Ferrdb
 Ferroptosis_driver <- read.table("ferroptosis_driver.txt",header = T,sep = "\t",stringsAsFactors = F,quote="") 
 Ferroptosis_driver_1 <- Ferroptosis_driver[which(Ferroptosis_driver$testin=="Human"|Ferroptosis_driver$testin=="Human, mice"|Ferroptosis_driver$testin=="Human, rat"|Ferroptosis_driver$testin=="Human, porcine"),]
-##KEGG
 library(clusterProfiler)
 library(org.Hs.eg.db)  
 library(KEGGREST)
@@ -85,7 +83,7 @@ ggplot(merge_score, aes(x = stemn  , y = clus, fill = clus)) +
   labs(title = "Ridgeline Plot of Sepal Lengths by Species",
        x = "stemn",
       y = "cluster")
-compare_means(stemn ~ clus,data = merge_score)##两两之间全都显著
+compare_means(stemn ~ clus,data = merge_score)
 
 ##Fig.3D
 library(IOBR)
@@ -236,3 +234,4 @@ final_map$clus <- factor(final_map$clus,levels=c("C1","C2","C3","C4"))
 ggplot(final_map, aes(x=cell_type, y=score, fill=clus)) + 
     geom_boxplot()+theme_classic()+scale_fill_manual(values=c("#E59F01","#0073B3","#CC79A7","#019E73"))+
 	theme(axis.text.x = element_text(angle = 90, hjust = 0.5, vjust = 0.5))
+
