@@ -13,7 +13,7 @@ GSVA_score_1 <- t(GSVA_score)
 GSVA_score_1 <- as.data.frame(GSVA_score_1)
 GSVA_score_1$sample <- gsub("\\.", "-", rownames(GSVA_score_1))
 GSVA_score_1$score <- GSVA_score_1$up-GSVA_score_1$down
-mRNA_expression <- read.table("TPM.txt",header = T,sep = "\t",stringsAsFactors = F,row.names=1)##181 sample
+mRNA_expression <- read.table("TPM.txt",header = T,sep = "\t",stringsAsFactors = F,row.names=1)
 PDL1_exp <- data.frame(sample=colnames(mRNA_expression),express=as.numeric(mRNA_expression[which(rownames(mRNA_expression)=="CD274"),]))
 PDL1_exp$sample_1 <- gsub("\\.", "-", PDL1_exp$sample)
 merge_score <- merge(GSVA_score_1,PDL1_exp,by.x="sample",by.y="sample_1")
@@ -478,3 +478,4 @@ ggtitle("ROC Curve")+
   theme_bw()+
   theme(panel.grid=element_blank())+
   annotate("text",x=0.75,y=0.125,label=paste("AUC = ", round(rocobj$auc,2)))
+
