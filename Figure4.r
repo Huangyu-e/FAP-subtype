@@ -1,5 +1,5 @@
 ##Fig.4A
-mRNA_expression <- read.table("TPM.txt",header = T,sep = "\t",stringsAsFactors = F,row.names=1)##181 sample
+mRNA_expression <- read.table("TPM.txt",header = T,sep = "\t",stringsAsFactors = F,row.names=1)
 sample=as.vector(colnames(mRNA_expression))
 express=as.vector(mRNA_expression[which(rownames(mRNA_expression)=="CD274"),])
 PDL1_exp <- data.frame(cbind(sample,express))
@@ -228,3 +228,4 @@ final_map$clus <- factor(final_map$clus,levels=c("C1","C2","C3","C4"))
 ggplot(final_map, aes(x=cell_type, y=score, fill=clus)) + 
     geom_boxplot()+theme_classic()+scale_fill_manual(values=c("#E59F01","#0073B3","#CC79A7","#019E73"))+
 	theme(axis.text.x = element_text(angle = 90, hjust = 0.5, vjust = 0.5))
+
